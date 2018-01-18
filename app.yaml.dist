@@ -8,8 +8,5 @@ runtime_config:
 
 env_variables:
   APP_ENV: "prod"
-  APP_PASSWORD: "Yy4BkVy73ov9"
-  APP_SECRET: "e35f05804d98d096925ff428fc86d731"
-
-manual_scaling:
-  instances: 1
+  APP_PASSWORD: ""
+  APP_SECRET: ""
