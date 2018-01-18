@@ -47,7 +47,12 @@ class ResizeController {
         $image = new ResizeImage($width, $height, $mode, $request->getContent(), $quality);
 
         return new Response(
-            $image->data(), Response::HTTP_OK, ['Content-Type', $image->getImageType(true)]
+            $image->data(), Response::HTTP_OK,
+            [
+                'Content-Type' => $image->getImageType(true),
+                'X-Php-Memory-Peak-Usage' => memory_get_peak_usage(),
+                'X-Resize-duration' => $image->getDuration()
+            ]
         );
     }
 }

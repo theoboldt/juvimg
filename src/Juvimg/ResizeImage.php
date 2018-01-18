@@ -51,6 +51,13 @@ class ResizeImage
     private $resized = false;
 
     /**
+     * Time spent for resizing
+     *
+     * @var double
+     */
+    private $duration = 0;
+
+    /**
      * ResizeImage constructor.
      *
      * @param int    $targetWidth
@@ -75,6 +82,7 @@ class ResizeImage
      */
     private function doResize()
     {
+        $startTime = microtime(true);
         $imagine = new Imagine();
         $size    = new Box($this->targetWidth, $this->targetHeight);
         $image   = $imagine->load($this->data);
@@ -88,6 +96,7 @@ class ResizeImage
                                    ]
                                );
         $this->resized = true;
+        $this->duration = microtime(true)-$startTime;
     }
 
     /**
@@ -131,5 +140,13 @@ class ResizeImage
         return ($mimeType == 'image/jpeg') ? 'jpg' : 'png';
     }
 
+    /**
+     * Get time spent for resize
+     *
+     * @return float
+     */
+    public function getDuration(): float {
+        return $this->duration;
+    }
 
 }
