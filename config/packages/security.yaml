@@ -1,0 +1,16 @@
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: '%env(APP_PASSWORD)%'
+                        roles: 'ROLE_USER'
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    firewalls:
+        main:
+            http_basic: ~
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+    access_control:
+        - { path: ^, roles: ROLE_USER }

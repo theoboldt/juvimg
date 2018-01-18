@@ -1,0 +1,7 @@
+runtime: php
+env: flex
+api_version: 1
+
+runtime_config:
+  document_root: public
+  front_controller_file: index.php

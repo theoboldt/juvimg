@@ -1,0 +1,20 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+resize:
+    path: /resized/{width}/{height}/{quality}/{mode}
+    controller: App\Controller\ResizeController::resized
+    requirements:
+        width: \d+
+        height: \d+
+        quality: \d+
+        mode: (inset|outbound)
+
+resizeInset:
+    path: /resized/{width}/{height}/{quality}
+    controller: App\Controller\ResizeController::resized
+    requirements:
+        width: \d+
+        height: \d+
+        quality: \d+
