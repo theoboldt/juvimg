@@ -12,14 +12,16 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController {
+class DefaultController
+{
 
     /**
-     * Main event
+     * Test service availability
      *
      * @return Response
      */
-    public function index() {
+    public function index()
+    {
         return new Response('OK');
     }
 

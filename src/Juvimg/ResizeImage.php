@@ -83,20 +83,21 @@ class ResizeImage
     private function doResize()
     {
         $startTime = microtime(true);
-        $imagine = new Imagine();
-        $size    = new Box($this->targetWidth, $this->targetHeight);
-        $image   = $imagine->load($this->data);
+        $imagine   = new Imagine();
+        $size      = new Box($this->targetWidth, $this->targetHeight);
+        $image     = $imagine->load($this->data);
 
-        $this->data    = $image->thumbnail($size, $this->targetMode)
-                               ->get(
-                                   $this->getImageType(false),
-                                   [
-                                       'jpeg_quality'          => $this->targetQuality,
-                                       'png_compression_level' => 9
-                                   ]
-                               );
-        $this->resized = true;
-        $this->duration = microtime(true)-$startTime;
+        $this->data = $image->thumbnail($size, $this->targetMode)
+                            ->get(
+                                $this->getImageType(false),
+                                [
+                                    'jpeg_quality'          => $this->targetQuality,
+                                    'png_compression_level' => 9,
+                                ]
+                            );
+
+        $this->resized  = true;
+        $this->duration = microtime(true) - $startTime;
     }
 
     /**
@@ -145,7 +146,8 @@ class ResizeImage
      *
      * @return float
      */
-    public function getDuration(): float {
+    public function getDuration(): float
+    {
         return $this->duration;
     }
 
