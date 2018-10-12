@@ -14,12 +14,10 @@
     "ext-gd": "*",
     "ext-fileinfo": "*",
     "ext-iconv": "*",
-    "google/cloud": "^0.46",
     "imagine/imagine": "0.7.*",
     "symfony/console": "^4.0",
     "symfony/flex": "^1.0",
     "symfony/framework-bundle": "^4.0",
-    "symfony/lts": "^4@dev",
     "symfony/security-bundle": "^4.0",
     "symfony/yaml": "^4.0"
   },
