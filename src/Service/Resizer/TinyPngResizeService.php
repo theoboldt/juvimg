@@ -8,40 +8,16 @@
  * file that was distributed with this source code.
  */
 
-
 namespace App\Service\Resizer;
-
 
 use App\Juvimg\ResizedImage;
 use App\Juvimg\ResizeImageRequest;
-use AppBundle\Juvimg\JuvimgImageResizeFailedException;
-use GuzzleHttp\Client;
+use App\Service\AbstractTinyPngService;
 use GuzzleHttp\Exception\RequestException;
-use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 
-class TinyPngResizeService implements ResizingProviderInterface
+class TinyPngResizeService extends AbstractTinyPngService implements ResizingProviderInterface
 {
-    /**
-     * API key for TinyPNG service
-     *
-     * @var string
-     */
-    private $apiKey;
-    /**
-     * Logger
-     *
-     * @var AbstractLogger
-     */
-    private $logger;
-    
-    /**
-     * Cached HTTP client
-     *
-     * @var Client
-     */
-    private $client;
-    
     /**
      * @param string|null $apiKey
      * @param LoggerInterface|null $logger
@@ -54,18 +30,6 @@ class TinyPngResizeService implements ResizingProviderInterface
         } else {
             return null;
         }
-    }
-    
-    /**
-     * TinyPngResizeService constructor.
-     *
-     * @param string $apiKey
-     * @param LoggerInterface $logger
-     */
-    public function __construct(string $apiKey, LoggerInterface $logger)
-    {
-        $this->apiKey = $apiKey;
-        $this->logger = $logger;
     }
     
     /**
@@ -143,25 +107,6 @@ class TinyPngResizeService implements ResizingProviderInterface
         );
         
         return new ResizedImage($response->getBody(), $request->getMimeType(), $duration, self::class);
-    }
-    
-    
-    /**
-     * Configures the Guzzle client for juvimg service
-     *
-     * @return Client
-     */
-    private function client()
-    {
-        if (!$this->client) {
-            $this->client = new Client(
-                [
-                    'base_uri' => 'https://api.tinify.com',
-                    'auth'     => ['api', $this->apiKey],
-                ]
-            );
-        }
-        return $this->client;
     }
     
 }

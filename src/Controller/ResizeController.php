@@ -11,7 +11,10 @@
 namespace App\Controller;
 
 use App\Juvimg\ResizeImageRequest;
+use App\Service\Optimizer\TinyPngOptimizeService;
+use App\Service\Resizer\OptimizeFailedException;
 use App\Service\Resizer\ResizeService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -27,13 +30,22 @@ class ResizeController
     private $resizer;
     
     /**
+     * Optimizer
+     *
+     * @var TinyPngOptimizeService|null
+     */
+    private $optimizer;
+    
+    /**
      * ResizeController constructor.
      *
-     * @param \App\Service\Resizer\ResizeService $resizer
+     * @param ResizeService $resizer
+     * @param null|TinyPngOptimizeService $optimizer
      */
-    public function __construct(ResizeService $resizer)
+    public function __construct(ResizeService $resizer, ?TinyPngOptimizeService $optimizer = null)
     {
-        $this->resizer = $resizer;
+        $this->resizer   = $resizer;
+        $this->optimizer = $optimizer;
     }
     
     /**
@@ -75,6 +87,15 @@ class ResizeController
         $result = $this->resizer->resize(
             new ResizeImageRequest($request->getContent(true), $contentType, $height, $mode, $width, $quality)
         );
+        
+        if ($this->optimizer) {
+            try {
+                $optimized = $this->optimizer->optimize($result);
+                return new RedirectResponse($optimized->getUrl());
+            } catch (OptimizeFailedException $e) {
+                //intentionally left empty
+            }
+        }
         
         return new Response(
             $result->getData(), Response::HTTP_OK,
