@@ -14,15 +14,17 @@
     "ext-gd": "*",
     "ext-fileinfo": "*",
     "ext-iconv": "*",
+    "ext-json": "*",
     "imagine/imagine": "^1.2",
-    "symfony/console": "^4.1",
+    "guzzlehttp/guzzle": "^6.3",
+    "symfony/console": "^4.3",
     "symfony/flex": "^1.0",
-    "symfony/framework-bundle": "^4.1",
-    "symfony/security-bundle": "^4.1",
-    "symfony/yaml": "^4.1"
+    "symfony/framework-bundle": "^4.3",
+    "symfony/security-bundle": "^4.3",
+    "symfony/yaml": "^4.3"
   },
   "require-dev": {
-    "symfony/dotenv": "^4.1"
+    "symfony/dotenv": "^4.3"
   },
   "config": {
     "preferred-install": {
