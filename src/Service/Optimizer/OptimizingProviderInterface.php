@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Service\Resizer;
+namespace App\Service\Optimizer;
 
 
 use App\Juvimg\OptimizedImage;

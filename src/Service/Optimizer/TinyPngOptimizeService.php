@@ -15,7 +15,6 @@ use App\Juvimg\OptimizedImage;
 use App\Juvimg\ResizedImage;
 use App\Service\AbstractTinyPngService;
 use App\Service\Resizer\OptimizeFailedException;
-use App\Service\Resizer\OptimizingProviderInterface;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 
