@@ -11,11 +11,11 @@
     "psr/log": {
         "version": "1.0.2"
     },
-    "psr/simple-cache": {
-        "version": "1.0.0"
-    },
     "symfony/cache": {
         "version": "v4.0.3"
+    },
+    "symfony/cache-contracts": {
+        "version": "v1.1.5"
     },
     "symfony/config": {
         "version": "v4.0.3"
@@ -40,6 +40,9 @@
     },
     "symfony/event-dispatcher": {
         "version": "v4.0.3"
+    },
+    "symfony/event-dispatcher-contracts": {
+        "version": "v1.1.5"
     },
     "symfony/filesystem": {
         "version": "v4.0.3"
@@ -74,11 +77,23 @@
     "symfony/inflector": {
         "version": "v4.0.3"
     },
+    "symfony/mime": {
+        "version": "v4.3.4"
+    },
     "symfony/polyfill-ctype": {
         "version": "v1.9.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.12.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
+    },
+    "symfony/polyfill-php72": {
+        "version": "v1.12.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.12.0"
     },
     "symfony/property-access": {
         "version": "v4.0.3"
@@ -92,9 +107,6 @@
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
         }
     },
-    "symfony/security": {
-        "version": "v4.0.3"
-    },
     "symfony/security-bundle": {
         "version": "3.3",
         "recipe": {
@@ -103,6 +115,24 @@
             "version": "3.3",
             "ref": "34eb245ce4194e7ae713558084180e2c532e7afd"
         }
+    },
+    "symfony/security-core": {
+        "version": "v4.3.4"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.3.4"
+    },
+    "symfony/security-guard": {
+        "version": "v4.3.4"
+    },
+    "symfony/security-http": {
+        "version": "v4.3.4"
+    },
+    "symfony/service-contracts": {
+        "version": "v1.1.6"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.3.4"
     },
     "symfony/yaml": {
         "version": "v4.0.3"
