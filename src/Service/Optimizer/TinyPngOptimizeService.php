@@ -22,14 +22,14 @@ class TinyPngOptimizeService extends AbstractTinyPngService implements Optimizin
 {
     
     /**
-     * @param string|null $apiKey
+     * @param string|null $apiKeys
      * @param LoggerInterface|null $logger
      * @return TinyPngOptimizeService|null
      */
-    public static function create(?string $apiKey = null, ?LoggerInterface $logger = null): ?TinyPngOptimizeService
+    public static function create(?string $apiKeys = null, ?LoggerInterface $logger = null): ?TinyPngOptimizeService
     {
-        if ($apiKey) {
-            return new self($apiKey, $logger);
+        if ($apiKeys) {
+            return new self(explode(',', $apiKeys), $logger);
         } else {
             return null;
         }

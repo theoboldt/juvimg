@@ -19,14 +19,14 @@ use Psr\Log\LoggerInterface;
 class TinyPngResizeService extends AbstractTinyPngService implements ResizingProviderInterface
 {
     /**
-     * @param string|null $apiKey
+     * @param string|null $apiKeys
      * @param LoggerInterface|null $logger
      * @return TinyPngResizeService|null
      */
-    public static function create(?string $apiKey = null, ?LoggerInterface $logger = null): ?TinyPngResizeService
+    public static function create(?string $apiKeys = null, ?LoggerInterface $logger = null): ?TinyPngResizeService
     {
-        if ($apiKey) {
-            return new self($apiKey, $logger);
+        if ($apiKeys) {
+            return new self(explode(',', $apiKeys), $logger);
         } else {
             return null;
         }

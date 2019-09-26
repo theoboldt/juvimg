@@ -21,9 +21,9 @@ abstract class AbstractTinyPngService
     /**
      * API key for TinyPNG service
      *
-     * @var string
+     * @var array|string[]
      */
-    protected $apiKey;
+    protected $apiKeys = [];
     /**
      * Logger
      *
@@ -41,13 +41,13 @@ abstract class AbstractTinyPngService
     /**
      * TinyPngResizeService constructor.
      *
-     * @param string $apiKey
+     * @param array|string[] $apiKeys
      * @param LoggerInterface $logger
      */
-    public function __construct(string $apiKey, LoggerInterface $logger)
+    public function __construct(array $apiKeys, LoggerInterface $logger)
     {
-        $this->apiKey = $apiKey;
-        $this->logger = $logger;
+        $this->apiKeys = $apiKeys;
+        $this->logger  = $logger;
     }
     
     /**
@@ -57,11 +57,13 @@ abstract class AbstractTinyPngService
      */
     protected function client()
     {
+        $index  = \array_rand($this->apiKeys);
+        $apiKey = $this->apiKeys[$index];
         if (!$this->client) {
             $this->client = new Client(
                 [
                     'base_uri' => 'https://api.tinify.com',
-                    'auth'     => ['api', $this->apiKey],
+                    'auth'     => ['api', $apiKey],
                 ]
             );
         }
