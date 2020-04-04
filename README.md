@@ -1,6 +1,8 @@
 # juvimg
 Image resizing service for *juvem* for Google App Engine
 
+![PHP Composer](https://github.com/theoboldt/juvimg/workflows/PHP%20Composer/badge.svg)
+
 ## Configuration
 In order to use *juvimg*, you need to configure *juvimg* and deploy at google cloud plattform and configure your *juvem* installation for usage of *juvimg*.
 
