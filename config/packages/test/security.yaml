@@ -1,0 +1,8 @@
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: 'z15f05804d98d016925ff428fc86d73a'
+                        roles: 'ROLE_USER'

@@ -29,6 +29,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "symfony/browser-kit": {
+        "version": "v4.4.7"
+    },
     "symfony/cache": {
         "version": "v4.0.3"
     },
@@ -52,6 +55,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v4.0.3"
+    },
+    "symfony/dom-crawler": {
+        "version": "v5.0.7"
     },
     "symfony/dotenv": {
         "version": "v4.0.3"
