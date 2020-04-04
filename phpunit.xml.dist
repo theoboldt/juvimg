@@ -13,6 +13,8 @@
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="7.5" />
+        <env name="TINYPNG_KEY" value=""/>
+        <env name="APP_PASSWORD" value="z15f05804d98d016925ff428fc86d73a"/>
     </php>
 
     <testsuites>
