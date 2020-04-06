@@ -2,6 +2,9 @@
 Image resizing service for *juvem* for Google App Engine
 
 ![PHP Composer](https://github.com/theoboldt/juvimg/workflows/PHP%20Composer/badge.svg)
+[![Build Status](https://travis-ci.org/theoboldt/juvimg.svg?branch=master)](https://travis-ci.org/github/theoboldt/juvimg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/00751c28db54cd4da37e/maintainability)](https://codeclimate.com/github/theoboldt/juvimg/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/00751c28db54cd4da37e/test_coverage)](https://codeclimate.com/github/theoboldt/juvimg/test_coverage)
 
 ## Configuration
 In order to use *juvimg*, you need to configure *juvimg* and deploy at google cloud plattform and configure your *juvem* installation for usage of *juvimg*.
