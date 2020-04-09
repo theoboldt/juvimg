@@ -45,10 +45,7 @@ class TinyPngOptimizeService extends AbstractTinyPngService implements Optimizin
     {
         $this->logger->info('Started image optimization using tinypng');
         try {
-            $response = $this->client()->post(
-                '/shrink',
-                ['body' => (string)$request]
-            );
+            $response = $this->client()->post('/shrink', ['body' => (string)$request]);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 $body = $e->getResponse()->getBody();
