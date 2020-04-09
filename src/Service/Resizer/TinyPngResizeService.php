@@ -45,33 +45,7 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
             'Started image shrinking using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
         );
         
-        try {
-            $response = $this->client()->post(
-                '/shrink',
-                ['body' => (string)$request]
-            );
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                $body = $e->getResponse()->getBody();
-                if ($body->getSize() < 1024) {
-                    $this->logger->warning('Failed to shrink image: ' . $body->getContents());
-                } else {
-                    $this->logger->warning('Failed to shrink image');
-                }
-            }
-            throw new ResizeFailedException('Failed to shrink image', $e->getCode(), $e);
-        }
-        $result = json_decode($response->getBody(), true);
-        $this->logger->info(
-            'Finished image shrinking using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
-        );
-        
-        if (is_array($result) && isset($result['output']['url'])) {
-            $scaleUrl = $result['output']['url'];
-        } else {
-            $this->logger->warning('Image shrink result misses url');
-            throw new ResizeFailedException('Failed to shrink image');
-        }
+        $scaleUrl = $this->tryShrinkImage($request);
         
         switch ($request->getTargetMode()) {
             case ResizeService::MODE_INSET:
@@ -108,5 +82,41 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
         
         return new ResizedImage($response->getBody(), $request->getMimeType(), $duration, self::class);
     }
-    
+
+    /**
+     * Try to shrink image and provide url of generated file
+     *
+     * @param ResizeImageRequest $request
+     * @return string
+     */
+    private function tryShrinkImage(ResizeImageRequest $request): string
+    {
+        try {
+            $response = $this->client()->post(
+                '/shrink',
+                ['body' => (string)$request]
+            );
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $body = $e->getResponse()->getBody();
+                if ($body->getSize() < 1024) {
+                    $this->logger->warning('Failed to shrink image: ' . $body->getContents());
+                } else {
+                    $this->logger->warning('Failed to shrink image');
+                }
+            }
+            throw new ResizeFailedException('Failed to shrink image', $e->getCode(), $e);
+        }
+        $result = json_decode($response->getBody(), true);
+        $this->logger->info(
+            'Finished image shrinking using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
+        );
+
+        if (is_array($result) && isset($result['output']['url'])) {
+            return $result['output']['url'];
+        } else {
+            $this->logger->warning('Image shrink result misses url');
+            throw new ResizeFailedException('Failed to shrink image');
+        }
+    }
 }

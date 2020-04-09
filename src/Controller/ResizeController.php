@@ -47,6 +47,35 @@ class ResizeController
         $this->resizer   = $resizer;
         $this->optimizer = $optimizer;
     }
+
+    /**
+     * Throw exception if input configuration is invalid
+     *
+     * @param int        $width   Desired image width
+     * @param int        $height  Desired image height
+     * @param int        $quality JPG quality setting
+     * @param string|int $mode    Boundary mode
+     * @throws BadRequestHttpException
+     */
+    private function validateSettings(
+        int $width,
+        int $height,
+        int $quality = 70,
+        $mode = ResizeService::MODE_INSET
+    ): void {
+        if ($width > 1000 || $width < 1) {
+            throw new BadRequestHttpException('Incorrect width transmitted');
+        }
+        if ($height > 1000 || $height < 1) {
+            throw new BadRequestHttpException('Incorrect height transmitted');
+        }
+        if ($quality > 100 || $quality < 1) {
+            throw new BadRequestHttpException('Incorrect quality transmitted');
+        }
+        if (!in_array($mode, [ResizeService::MODE_INSET, ResizeService::MODE_OUTBOUND], true)) {
+            throw new BadRequestHttpException('Incorrect mode transmitted');
+        }
+    }
     
     /**
      * Do resize
@@ -68,21 +97,9 @@ class ResizeController
     {
         $contentType = $request->getContentType();
         if (!$contentType) {
-            list($contentType) = $request->getAcceptableContentTypes();
+            [$contentType] = $request->getAcceptableContentTypes();
         }
-        
-        if ($width > 1000 || $width < 1) {
-            throw new BadRequestHttpException('Incorrect width transmitted');
-        }
-        if ($height > 1000 || $height < 1) {
-            throw new BadRequestHttpException('Incorrect height transmitted');
-        }
-        if ($quality > 100 || $quality < 1) {
-            throw new BadRequestHttpException('Incorrect quality transmitted');
-        }
-        if (!in_array($mode, [ResizeService::MODE_INSET, ResizeService::MODE_OUTBOUND], true)) {
-            throw new BadRequestHttpException('Incorrect mode transmitted');
-        }
+        $this->validateSettings($width, $height, $quality, $mode);
         
         $result = $this->resizer->resize(
             new ResizeImageRequest($request->getContent(true), $contentType, $height, $mode, $width, $quality)
