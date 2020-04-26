@@ -20,8 +20,15 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Copy test suite config
+      run: cp ./phpunit.xml.dist ./phpunit.xml 
+      
+    - name: Run Tests
+      run: php bin/phpunit --coverage-text --coverage-clover ./test-clover.xml
 
-    - name: Run test suite
-      run: composer run-script test
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_SECRET }}
+        file: ./test-clover.xml
+        flags: unittests
