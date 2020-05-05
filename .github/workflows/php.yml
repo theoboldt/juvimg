@@ -24,4 +24,13 @@ jobs:
       run: cp ./phpunit.xml.dist ./phpunit.xml 
       
     - name: Run Tests
-      run: php bin/phpunit --coverage-text
+      run: php bin/phpunit --coverage-text --coverage-clover ./test-clover.xml
+
+    - name: Upload coverage to Codecov  
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./test-clover.xml
+        flags: unittests
+        name: clover-coverage
+        fail_ci_if_error: false
