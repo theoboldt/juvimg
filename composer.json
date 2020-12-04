@@ -26,6 +26,7 @@
   "require-dev": {
     "symfony/browser-kit": "^4.3",
     "symfony/dotenv": "^4.3",
+    "phpunit/phpunit": "^8.0",
     "symfony/phpunit-bridge": "^5.0"
   },
   "config": {
