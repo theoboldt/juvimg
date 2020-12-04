@@ -50,7 +50,7 @@ jobs:
         run: cp phpunit.xml.dist phpunit.xml
 
       - name: Run Tests
-        run: php bin/phpunit --coverage-text --coverage-clover ./phpunit-result-clover.xml
+        run: php vendor/phpunit/phpunit/phpunit --configuration ./phpunit.xml --coverage-text --coverage-clover ./phpunit-result-clover.xml
 
       - uses: actions/upload-artifact@v2
         with:
