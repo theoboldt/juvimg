@@ -38,7 +38,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Validate Composer files
-      run: composer validate --working-dir=app
+      run: composer validate
 
     - name: Install Composer dependencies
       run: |
