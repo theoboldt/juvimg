@@ -34,7 +34,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/app/composer.lock') }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Validate Composer files
@@ -48,7 +48,7 @@ jobs:
       run: cp ./phpunit.xml.dist ./phpunit.xml   
 
     - name: Run Tests
-      run: php app/bin/phpunit --coverage-text --coverage-clover ./phpunit-result-clover.xml
+      run: php bin/phpunit --coverage-text --coverage-clover ./phpunit-result-clover.xml
 
     - uses: actions/upload-artifact@v2
       with:
