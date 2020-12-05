@@ -8,6 +8,9 @@
          bootstrap="tests/bootstrap.php"
 >
     <php>
+        <!-- Temporarily preventing https://github.com/xdebug/xdebug/pull/699 -->
+        <const name="XDEBUG_CC_UNUSED"  value=""/>
+
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
