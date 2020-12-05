@@ -40,4 +40,28 @@ PNG;
 
         return base64_decode($image);
     }
+
+    public function testStringCastEmptyData(): void
+    {
+        $image = new Image(null);
+        $this->assertEquals('', (string)$image);
+    }
+
+    public function testResourceRead(): void
+    {
+        $temp = tmpfile();
+        fwrite($temp, self::provideImageInput());
+        fseek($temp, 0);
+        $image = new Image($temp);
+        $this->assertEquals(self::provideImageInput(), (string)$image);
+
+        fclose($temp);
+    }
+
+    public function testStringCastString(): void
+    {
+        $image = new Image('test');
+        $this->assertEquals('test', (string)$image);
+    }
+
 }
