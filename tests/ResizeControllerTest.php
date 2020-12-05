@@ -17,7 +17,7 @@ use App\Juvimg\OptimizedImage;
 use App\Kernel;
 use App\Service\Optimizer\TinyPngOptimizeService;
 use App\Service\Resizer\ImagineResizeService;
-use App\Service\Resizer\OptimizeFailedException;
+use App\Service\Optimizer\OptimizeFailedException;
 use App\Service\Resizer\ResizeService;
 use Imagine\Exception\RuntimeException;
 use Psr\Log\NullLogger;
