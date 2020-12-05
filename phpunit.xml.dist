@@ -3,14 +3,14 @@
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="bin/.phpunit/phpunit.xsd"
-         backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
 >
     <php>
         <!-- Temporarily preventing https://github.com/xdebug/xdebug/pull/699 -->
         <const name="XDEBUG_CC_UNUSED"  value=""/>
-
+        <const name="XDEBUG_CC_DEAD_CODE"  value=""/>
+        
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
