@@ -93,13 +93,17 @@ class ResizeController
         int $height,
         int $quality = 70,
         $mode = ResizeService::MODE_INSET
-    )
+    ): Response
     {
+        $this->validateSettings($width, $height, $quality, $mode);
+
         $contentType = $request->getContentType();
         if (!$contentType) {
-            [$contentType] = $request->getAcceptableContentTypes();
+            $contentType = $request->getAcceptableContentTypes();
+            if (!count($contentType)) {
+                $contentType = null;
+            }
         }
-        $this->validateSettings($width, $height, $quality, $mode);
         
         $result = $this->resizer->resize(
             new ResizeImageRequest($request->getContent(true), $contentType, $height, $mode, $width, $quality)
