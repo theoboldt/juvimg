@@ -10,7 +10,6 @@
 
 namespace App\Juvimg;
 
-
 class OptimizedImage
 {
     /**

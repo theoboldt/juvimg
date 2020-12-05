@@ -12,7 +12,7 @@ namespace App\Controller;
 
 use App\Juvimg\ResizeImageRequest;
 use App\Service\Optimizer\TinyPngOptimizeService;
-use App\Service\Resizer\OptimizeFailedException;
+use App\Service\Optimizer\OptimizeFailedException;
 use App\Service\Resizer\ResizeService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

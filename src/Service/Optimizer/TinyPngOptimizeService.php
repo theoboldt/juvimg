@@ -10,11 +10,9 @@
 
 namespace App\Service\Optimizer;
 
-
 use App\Juvimg\OptimizedImage;
 use App\Juvimg\ResizedImage;
 use App\Service\AbstractTinyPngService;
-use App\Service\Resizer\OptimizeFailedException;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 

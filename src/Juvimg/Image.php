@@ -11,7 +11,6 @@
 
 namespace App\Juvimg;
 
-
 class Image
 {
     /**

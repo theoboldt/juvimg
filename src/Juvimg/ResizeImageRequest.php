@@ -11,9 +11,6 @@
 
 namespace App\Juvimg;
 
-use Imagine\Gd\Imagine;
-use Imagine\Image\Box;
-
 class ResizeImageRequest extends Image
 {
     /**

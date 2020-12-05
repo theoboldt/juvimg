@@ -10,7 +10,6 @@
 
 namespace App\Service\Optimizer;
 
-
 use App\Juvimg\OptimizedImage;
 use App\Juvimg\ResizedImage;
 

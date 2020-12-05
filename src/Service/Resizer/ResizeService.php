@@ -10,7 +10,6 @@
 
 namespace App\Service\Resizer;
 
-
 use App\Juvimg\ResizedImage;
 use App\Juvimg\ResizeImageRequest;
 use Psr\Log\AbstractLogger;

@@ -11,7 +11,6 @@
 
 namespace App\Juvimg;
 
-
 class ResizedImage extends Image
 {
     /**
@@ -20,21 +19,21 @@ class ResizedImage extends Image
      * @var double
      */
     private $duration = 0;
-    
+
     /**
      * Responsible resizer
      *
      * @var string
      */
     private $resizer;
-    
+
     /**
      * ResizedImage constructor.
      *
-     * @param $data
+     * @param             $data
      * @param string|null $mimeType
-     * @param float $duration
-     * @param string $resizer
+     * @param float       $duration
+     * @param string      $resizer
      */
     public function __construct($data, ?string $mimeType, float $duration, string $resizer)
     {
@@ -42,7 +41,7 @@ class ResizedImage extends Image
         $this->resizer  = $resizer;
         parent::__construct($data, $mimeType);
     }
-    
+
     /**
      * Get time spent for resize
      *
@@ -52,7 +51,7 @@ class ResizedImage extends Image
     {
         return $this->duration;
     }
-    
+
     /**
      * @return string
      */

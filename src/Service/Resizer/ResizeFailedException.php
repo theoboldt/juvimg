@@ -10,7 +10,6 @@
 
 namespace App\Service\Resizer;
 
-
 class ResizeFailedException extends \RuntimeException
 {
 
