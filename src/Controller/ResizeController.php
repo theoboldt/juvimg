@@ -7,12 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Juvimg\ResizeImageRequest;
-use App\Service\Optimizer\TinyPngOptimizeService;
 use App\Service\Optimizer\OptimizeFailedException;
+use App\Service\Optimizer\TinyPngOptimizeService;
 use App\Service\Resizer\ResizeService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +62,7 @@ class ResizeController
         int $width,
         int $height,
         int $quality = 70,
-        $mode = ResizeService::MODE_INSET
+        string $mode = ResizeService::MODE_INSET
     ): void {
         if ($width > 1000 || $width < 1) {
             throw new BadRequestHttpException('Incorrect width transmitted');
@@ -92,7 +93,7 @@ class ResizeController
         int $width,
         int $height,
         int $quality = 70,
-        $mode = ResizeService::MODE_INSET
+        string $mode = ResizeService::MODE_INSET
     ): Response
     {
         $this->validateSettings($width, $height, $quality, $mode);

@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+declare(strict_types=1);
 
 
 namespace App\Juvimg;
@@ -60,7 +61,7 @@ class Image
      * @param bool $asMimeType Set to true if the mime type should be returned and not jpg or png
      * @return string          Image type as mime type or png or jpg
      */
-    public function getImageType($asMimeType = false)
+    public function getImageType($asMimeType = false): string
     {
         $mimeType = $this->getMimeType();
        

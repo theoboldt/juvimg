@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+declare(strict_types=1);
 
 
 namespace App\Service;
@@ -55,7 +56,7 @@ abstract class AbstractTinyPngService
      *
      * @return Client
      */
-    protected function client()
+    protected function client(): Client
     {
         $index  = \array_rand($this->apiKeys);
         $apiKey = $this->apiKeys[$index];
