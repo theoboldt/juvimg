@@ -43,7 +43,8 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
     {
         $startTime = microtime(true);
         $this->logger->info(
-            'Started image shrinking using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
+            'Started image shrinking using tinypng, peak memory now {memory}',
+            ['memory' => memory_get_peak_usage()]
         );
         
         $scaleUrl = $this->tryShrinkImage($request);
@@ -68,7 +69,8 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
         ];
         
         $this->logger->info(
-            'Started image resizing using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
+            'Started image resizing using tinypng, peak memory now {memory}',
+            ['memory' => memory_get_peak_usage()]
         );
         $response = $this->client()->post(
             $scaleUrl,
@@ -78,7 +80,8 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
         $request->closeHandle();
         
         $this->logger->info(
-            'Finished image resizing using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
+            'Finished image resizing using tinypng, peak memory now {memory}',
+            ['memory' => memory_get_peak_usage()]
         );
         
         return new ResizedImage($response->getBody(), $request->getMimeType(), $duration, self::class);
@@ -110,7 +113,8 @@ class TinyPngResizeService extends AbstractTinyPngService implements ResizingPro
         }
         $result = json_decode($response->getBody(), true);
         $this->logger->info(
-            'Finished image shrinking using tinypng, peak memory now {memory}', ['memory' => memory_get_peak_usage()]
+            'Finished image shrinking using tinypng, peak memory now {memory}',
+            ['memory' => memory_get_peak_usage()]
         );
 
         if (is_array($result) && isset($result['output']['url'])) {

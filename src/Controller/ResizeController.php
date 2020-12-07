@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Juvimg\Image;
+use App\Juvimg\OptimizedImage;
+use App\Juvimg\ResizedImage;
 use App\Juvimg\ResizeImageRequest;
 use App\Service\Optimizer\OptimizeFailedException;
 use App\Service\Optimizer\TinyPngOptimizeService;
@@ -58,7 +61,7 @@ class ResizeController
      * @param string|int $mode    Boundary mode
      * @throws BadRequestHttpException
      */
-    private function validateSettings(
+    private static function validateSettings(
         int $width,
         int $height,
         int $quality = 70,
@@ -79,6 +82,25 @@ class ResizeController
     }
     
     /**
+     * Create response from resized image
+     *
+     * @param ResizedImage $result
+     * @return Response
+     */
+    private static function createResponse(ResizedImage $result): Response
+    {
+        return new Response(
+            $result->getData(), Response::HTTP_OK,
+            [
+                'Content-Type'            => $result->getImageType(true),
+                'X-Php-Memory-Peak-Usage' => memory_get_peak_usage(),
+                'X-Resize-duration'       => $result->getDuration(),
+                'X-Resize-method'         => $result->getResizer(),
+            ]
+        );
+    }
+    
+    /**
      * Do resize
      *
      * @param int $width       Desired image width
@@ -96,7 +118,7 @@ class ResizeController
         string $mode = ResizeService::MODE_INSET
     ): Response
     {
-        $this->validateSettings($width, $height, $quality, $mode);
+        self::validateSettings($width, $height, $quality, $mode);
 
         $contentType = $request->getContentType();
         if (!$contentType) {
@@ -118,15 +140,7 @@ class ResizeController
                 //intentionally left empty
             }
         }
-        
-        return new Response(
-            $result->getData(), Response::HTTP_OK,
-            [
-                'Content-Type'            => $result->getImageType(true),
-                'X-Php-Memory-Peak-Usage' => memory_get_peak_usage(),
-                'X-Resize-duration'       => $result->getDuration(),
-                'X-Resize-method'         => $result->getResizer(),
-            ]
-        );
+    
+        return self::createResponse($result);
     }
 }
