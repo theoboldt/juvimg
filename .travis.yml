@@ -9,6 +9,7 @@ cache:
 php:
   - 7.3
   - 7.4
+  - 8.0
   - nightly
 
 env:
@@ -33,3 +34,4 @@ matrix:
   allow_failures:
     - php: nightly
     - php: 7.3
+    - php: 8.0
