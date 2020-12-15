@@ -14,14 +14,14 @@ namespace App\Tests;
 
 use App\Service\Optimizer\TinyPngOptimizeService;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use ReflectionClass;
 
 class TinyPngOptimizeServiceTest extends TestCase
 {
     public function testExplodeKeys(): void
     {
-        $service = TinyPngOptimizeService::create('first,second');
-
+        $service = TinyPngOptimizeService::create('first,second', new NullLogger());
 
         $reflection = new ReflectionClass($service);
         $property   = $reflection->getProperty('apiKeys');
