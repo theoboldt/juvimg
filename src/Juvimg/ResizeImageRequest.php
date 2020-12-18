@@ -44,7 +44,9 @@ class ResizeImageRequest extends Image
      * @param int $targetWidth
      * @param int $targetQuality
      */
-    public function __construct($data, ?string $mimeType, $targetHeight, $targetMode, $targetWidth, $targetQuality = 70)
+    public function __construct(
+        $data, ?string $mimeType, int $targetHeight, string $targetMode, int $targetWidth, int $targetQuality = 70
+    )
     {
         $this->targetWidth   = $targetWidth;
         $this->targetHeight  = $targetHeight;

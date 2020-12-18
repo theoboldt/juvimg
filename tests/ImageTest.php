@@ -13,7 +13,10 @@ namespace App\Tests;
 
 
 use App\Juvimg\Image;
+use App\Juvimg\ResizeImageRequest;
+use App\Service\Resizer\ImagineResizeService;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 class ImageTest extends TestCase
 {
@@ -62,6 +65,20 @@ PNG;
     {
         $image = new Image('test');
         $this->assertEquals('test', (string)$image);
+    }
+    
+    public function testUnexpectedMode(): void
+    {
+        $temp = tmpfile();
+        fwrite($temp, self::provideImageInput());
+        fseek($temp, 0);
+
+        $r = new ResizeImageRequest($temp, null, 100, 'unknown', 100);
+        $s = new ImagineResizeService(new NullLogger());
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Unavailable resize mode requested');
+        
+        $s->resize($r);
     }
 
 }
