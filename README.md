@@ -1,7 +1,6 @@
 # juvimg
 Image resizing service for *juvem* for Google App Engine
 
-![PHP Composer](https://github.com/theoboldt/juvimg/workflows/PHP%20Composer/badge.svg)
 ![Dependencies and Tests](https://github.com/theoboldt/juvimg/workflows/Dependencies%20and%20Tests/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/00751c28db54cd4da37e/maintainability)](https://codeclimate.com/github/theoboldt/juvimg/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/00751c28db54cd4da37e/test_coverage)](https://codeclimate.com/github/theoboldt/juvimg/test_coverage)
